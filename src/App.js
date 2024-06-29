@@ -46,7 +46,10 @@ function App() {
   }, [misProductos])
 
   return (
+    <>    
+    <h1 className='title'>Menu hecho con react</h1>
     <main className='main'>
+      <article>
     <section className='listingProd'>
       {
         productos.filter((dato) => dato.estado === false).map((prod,index) => (
@@ -57,21 +60,33 @@ function App() {
       }
     </section>
     <section className='listingMisProd'>
-      {productosOrdenados.map((prod,index) => 
-          <div key={prod.producto} className='misProd'>
-            <div onClick={ () => incrementarStars(prod.producto, prod.estrellas)}>
-              {prod.producto}
-            </div>
-            <div>
-              {
-              addStars(prod.estrellas)
-              
-              }
-            </div>
-          </div>
-        )}
+
+
+        <table>
+          <thead>
+            <tr>
+            <th>
+              Items
+            </th>
+            <th>Stars</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          {productosOrdenados.map((prod,index) =>
+            <tr key={prod.producto} className='misProd' onClick={ () => incrementarStars(prod.producto, prod.estrellas)}>
+              <td className='celdas'>{prod.producto}</td>
+              <td className='celdas'>{
+              addStars(prod.estrellas)              
+              }</td>
+            </tr>
+        )} 
+          </tbody>
+        </table>
     </section>
+    </article>
     </main>
+    </>
   );
 }
 
